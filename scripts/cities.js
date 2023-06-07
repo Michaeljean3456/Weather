@@ -1,7 +1,7 @@
 cities = [
     {name: "New York City, NY",
      latitude: 40.7128,
-      longitude: -74.0060},
+      longitude: -72.0060},
     {name: "Los Angeles, CA",
      latitude: 34.0522,
       longitude: -118.2437},
