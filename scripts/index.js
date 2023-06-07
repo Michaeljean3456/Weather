@@ -29,23 +29,32 @@ function addItemInInput() {
         fetch(theUrl)
             .then(response => response.json())
             .then(info => {
-                let apiArray = info.properties.periods;
-                console.log(apiArray)
-                weatherInfo(apiArray);
+                let forecastUrl = info.properties.forecast;
+                fetchForecast(forecastUrl);
             });
     }
 }
 
-function weatherInfo(apiArray) {
-    for (let rowData of apiArray) {
+function fetchForecast(forecastUrl) {
+    fetch(forecastUrl)
+        .then(response => response.json())
+        .then(forecastData => {
+            let periods = forecastData.properties.periods;
+            weatherInfo(periods);
+        });
+}
+
+function weatherInfo(periods) {
+    tableInput.innerHTML = ""; 
+    for (let period of periods) {
         let newRow = tableInput.insertRow(-1);
         let cell1 = newRow.insertCell(0);
-        cell1.textContent = rowData.name;
+        cell1.textContent = period.name;
 
         let cell2 = newRow.insertCell(1);
-        cell2.textContent = rowData.temperature;
+        cell2.textContent = period.temperature;
 
         let cell3 = newRow.insertCell(2);
-        cell3.textContent = rowData.detailedForecast;
+        cell3.textContent = period.detailedForecast;
     }
 }
