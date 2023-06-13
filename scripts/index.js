@@ -1,10 +1,15 @@
 "use strict";
 const cityList = document.getElementById("cityList");
 const tableInput = document.getElementById("tableInput");
+const tableOutput =document.getElementById("tableOutput");
 
 window.onload = function() {
     populateCityList();
+    hidetableOutput();
+    ShowtableOutput();
     cityList.onchange = addItemInInput;
+
+    
 };
 
 function populateCityList() {
@@ -57,4 +62,12 @@ function weatherInfo(periods) {
         let cell3 = newRow.insertCell(2);
         cell3.textContent = period.detailedForecast;
     }
+}
+
+function ShowtableOutput(){
+    tableOutput.style.display = 'block';
+}
+
+function hidetableOutput(){
+    tableOutput.style.display = 'none';
 }
